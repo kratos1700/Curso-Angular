@@ -1,11 +1,16 @@
 <p>listado de Héroes</p>
 
 
-<div>
-    <h3>Héroe Borrado:</h3>
-    <span> {{heroeBorrado}}</span>
+<div *ngIf="heroeBorrado !== ''; else noBorrado "> <!--condicion if - else pasando una referencia local -->
+    <h3>Héroe Borrado: <small> {{heroeBorrado}}</small> </h3>
+    
 
 </div>
+
+<ng-template #noBorrado>   <!--  Referencia local -->
+    <h3>No ha borrado nada</h3>
+</ng-template>
+
 <div>
     
 </div>
