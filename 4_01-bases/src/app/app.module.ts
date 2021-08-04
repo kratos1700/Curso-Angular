@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 
 import { ContadorModule } from './contador/contador.module';
+import { DbzModule } from './dbz/dbz.module';
 import { HeroesModule } from './heroes/heroes.module';
 
 
@@ -17,7 +18,8 @@ import { HeroesModule } from './heroes/heroes.module';
   imports: [
     BrowserModule,
     HeroesModule,  // importamos el modulo personalizado creado por nosotros con sus 2 components para usar
-    ContadorModule // importamos el modulo personalizado creado por nosotros 
+    ContadorModule, // importamos el modulo personalizado creado por nosotros 
+    DbzModule
     
   ],
   providers: [],
