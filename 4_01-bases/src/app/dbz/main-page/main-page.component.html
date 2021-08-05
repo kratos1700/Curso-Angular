@@ -16,11 +16,26 @@
     </div>
 
     <div class="col"> 
-        <h3>Agregar</h3>
+        <h3>Agregar  <small>{{nuevo.nombre}}</small> </h3>
         <hr>
         <form (ngSubmit)="agregar()"> <!-- ngSubmit sirve para que no se refresque la pagina-->
-            <input type="text" placeholder="Nombre"/>
-            <input type="number" placeholder="Poder"/>
+            <input 
+                type="text" 
+                 placeholder="Nombre"
+                 name="nombre" 
+                 [(ngModel)]="nuevo.nombre"
+                 
+            
+            
+            /><!-- [value]="nuevo.nombre" 
+                (input)="cambiarNombre( $event )"
+                Value es el valor del contenido del input, con los [] le decimos/establecemos que el valor 
+                esta relacionado a algun elemento-->
+
+            <input type="number" placeholder="Poder" name="poder" [(ngModel)]="nuevo.poder" />
+            <!-- 
+                [(ngModel)] establece y captura se le tiene que pasar el name del atributo para que funcione linia 25
+            -->
 
 
             <button type="submit">Agregar</button>
