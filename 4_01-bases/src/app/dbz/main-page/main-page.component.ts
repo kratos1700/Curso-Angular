@@ -1,50 +1,55 @@
 import { Component, OnInit } from '@angular/core';
 
-interface Personaje{
+interface Personaje {
   nombre: string;
-  poder:number;
+  poder: number;
 }
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.css']
+  styleUrls: ['./main-page.component.css'],
 })
 export class MainPageComponent implements OnInit {
-
-
-
-  nuevo:Personaje={
-    nombre: 'Trunks',
-    poder: 11000
+  personajes: Personaje[] = [
+    {
+    nombre:'Goku',
+    poder:15000,
+  },
+  {
+    nombre:'Vegeta',
+    poder:15500,
   }
 
+];
 
+  nuevo: Personaje = {
+    nombre: '',
+    poder: 0,
+  };
 
-  constructor() { 
+  constructor() {}
 
-  }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-
-  }
-
-
-
-  cambiarNombre(event:any){
-
-    console.log( event.target.value );
-    
+  cambiarNombre(event: any) {
+    console.log(event.target.value);
   }
 
   //aqui declaramos las funciones/ metodos
   agregar(): void {
-   
+    if (this.nuevo.nombre.trim().length === 0) {return;}
+    else{
+
+      
+      this.personajes.push(this.nuevo);
+      
+      this.nuevo={
+        nombre: '',
+        poder:0
+      }
+    }
+
     console.log(this.nuevo);
-    
-
   }
-
-  
-
 }

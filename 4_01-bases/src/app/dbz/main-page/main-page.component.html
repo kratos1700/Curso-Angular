@@ -8,10 +8,10 @@
         <h3>Personajes</h3>
         <hr>
         <ul>
-            <li>Krilin - 700</li>
-            <li>Goku - 15.000</li>
-            <li>Vegeta - 15.700</li>
-            <li>Satanas - 8.000</li>
+            <li *ngFor="let personaje of personajes; let i = index">
+                {{i+1}} {{personaje.nombre}}: {{personaje.poder | number}}
+            </li> <!--  | number  sirve para mostrar la info como numeros añadiendo comas, visializacion -->
+            
         </ul>
     </div>
 
