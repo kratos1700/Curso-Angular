@@ -5,42 +5,19 @@
 
 <div class="row">
     <div class="col"> 
-        <h3>Personajes</h3>
-        <hr>
-        <ul>
-            <li *ngFor="let personaje of personajes; let i = index">
-                {{i+1}} {{personaje.nombre}}: {{personaje.poder | number}}
-            </li> <!--  | number  sirve para mostrar la info como numeros añadiendo comas, visializacion -->
-            
-        </ul>
+        <app-personajes > <!-- importa la variable personajes y la asigna  al @input-->
+
+        </app-personajes>
+        
     </div>
 
     <div class="col"> 
-        <h3>Agregar  <small>{{nuevo.nombre}}</small> </h3>
-        <hr>
-        <form (ngSubmit)="agregar()"> <!-- ngSubmit sirve para que no se refresque la pagina-->
-            <input 
-                type="text" 
-                 placeholder="Nombre"
-                 name="nombre" 
-                 [(ngModel)]="nuevo.nombre"
-                 
-            
-            
-            /><!-- [value]="nuevo.nombre" 
-                (input)="cambiarNombre( $event )"
-                Value es el valor del contenido del input, con los [] le decimos/establecemos que el valor 
-                esta relacionado a algun elemento-->
+       
 
-            <input type="number" placeholder="Poder" name="poder" [(ngModel)]="nuevo.poder" />
-            <!-- 
-                [(ngModel)] establece y captura se le tiene que pasar el name del atributo para que funcione linia 25
-            -->
+        <app-agregar [nuevo]="nuevo">
 
 
-            <button type="submit">Agregar</button>
-        </form>
-
+        </app-agregar>
 
     </div>
 
