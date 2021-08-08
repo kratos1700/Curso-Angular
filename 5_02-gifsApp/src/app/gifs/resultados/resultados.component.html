@@ -1,6 +1,25 @@
-Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui amet possimus consectetur alias facilis perferendis voluptatum hic laboriosam aliquam veniam tempora quae quidem impedit officia, ea perspiciatis ratione? Et, doloribus?
-Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui amet possimus consectetur alias facilis perferendis voluptatum hic laboriosam aliquam veniam tempora quae quidem impedit officia, ea perspiciatis ratione? Et, doloribus?
-Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui amet possimus consectetur alias facilis perferendis voluptatum hic laboriosam aliquam veniam tempora quae quidem impedit officia, ea perspiciatis ratione? Et, doloribus?
+<!-- <ul>
+
+    <li *ngFor="let item of resultados">
+
+        {{item.title}}
+    </li>
+
+</ul> -->
 
 
+<div class="row">
+    <div *ngFor="let item of resultados " class="col-md-4 col-sm-6 ">
 
+        <div class="card">
+            <img class="card_img-top" [src]="item.images.downsized_medium.url" [alt]="item.title">
+            <div class="card-body">
+                <p class="card-text">
+                    {{item.title}}
+                    
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
