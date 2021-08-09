@@ -1,8 +1,16 @@
 <h5>Buscar:</h5>
-<input 
+<div>
+    <input 
     type="text" 
     class="form-control" 
     placeholder="Buscar Gifs..."
     (keyup.enter)="buscar()"
     #txtBuscar
     >
+    <div class="d-grid gap-2 col-6 mx-auto p-3" >
+        <button type="button" (click)="buscar()" class="btn btn-dark btn-sm">Buscar</button>
+    </div>
+</div>
+
+
+  
