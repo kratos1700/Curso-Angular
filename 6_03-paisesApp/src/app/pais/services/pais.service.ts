@@ -21,4 +21,26 @@ buscarPais(termino:string): Observable<Country[]> {
   return  this.http.get<Country[]>(url);
 }
 
+
+// funcion para retornar el arreglo de capitales a buscar.
+buscarCapital(termino:string): Observable<Country[]> {
+  // url para realizar la peticion get a la api
+  const url=`${this.apiUrl}/capital/${termino}`;
+
+  //realizamos la peticion, no nos suscribimos, lo retornamos
+  return  this.http.get<Country[]>(url);
+}
+
+
+
+// funcion para retornar el pais por codigo del url.
+getPaisPorCodigo(codigoPais:string): Observable<Country> {
+  // url para realizar la peticion get a la api
+  const url=`${this.apiUrl}/alpha/${codigoPais}`;
+
+  //realizamos la peticion, no nos suscribimos, lo retornamos
+  return  this.http.get<Country>(url);
+}
+
+
 }

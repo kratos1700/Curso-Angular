@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
@@ -12,6 +12,9 @@ export class PaisInputComponent implements OnInit {
   @Output() onEnter: EventEmitter<string> = new EventEmitter();
   // SISTEMA DE AYUDA EN LA CAJA DE BUSQUEDAD
   @Output() onDebounce: EventEmitter<string> = new EventEmitter();
+
+  //Recibimos el string del placeholder, creamos una nueva propiedad para usar en el html 
+  @Input() placeholder: string ='';
 
   //El subject es un observable
   debouncer: Subject<string> = new Subject();
