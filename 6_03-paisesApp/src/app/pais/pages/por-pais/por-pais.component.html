@@ -6,13 +6,10 @@
 <div class="row">
     <div class="col">
 
-        <form (ngSubmit)="buscar()"   autocomplete="off">
-            <input type="text" name="termino" 
-            class="form-control" 
-            [(ngModel)]="termino"
-            placeholder="Buscar País..."
-            id="">
-        </form>
+        <app-pais-input 
+        (onEnter)="buscar($event)" 
+        (onDebounce)="sugerencias($event)"     ></app-pais-input> <!--ENVIAMOS LA PALABRA QUE QUEREMOS BUSCAR QUE EMOS ENVIADO DESDE PAIS-INPUT  CON EL OUTPUT-->
+       
     </div>
 </div>
 
@@ -20,41 +17,15 @@
 
 
 <!--MENSAJE DE ERROR-->
-<div class="alert alert-danger">
-    No se encontro el termino a buscar
+<div *ngIf="isError"     class="alert alert-danger">
+    No se encontro nada con la palabra {{termino}}
 
 </div>
-
-<div class="row">
+<!--SI HAY MAS DE 0 PAISES MOSTRAMOS LA TABLA-->
+<div *ngIf="paises.length > 0"class="row">
     <div class="col">
 
-        <table class="table table-hover">
-            <thead>
-
-                <tr>
-                    <th>
-                        #
-                    </th>
-                    <th>Bandera</th>
-                    <th>Nombre</th>
-                    <th>Población</th>
-                    <th></th>
-
-                </tr>
-            </thead>
-            <tbody>
-
-                <tr>
-                    <td>1</td>
-                    <td>bandera</td>
-                    <td>nombre</td>
-                    <td>234234234</td>
-                    <td>
-                        <a href="#">Ver...</a>
-                    </td>
-                </tr>
-            </tbody>
-
-        </table>
+        <app-pais-tabla [paises]="paises"></app-pais-tabla>
+        
     </div>
 </div>
