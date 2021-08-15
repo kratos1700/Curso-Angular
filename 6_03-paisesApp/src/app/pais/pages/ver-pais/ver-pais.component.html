@@ -23,21 +23,24 @@
             <h3>Información</h3>
             <ul class="list-group">
                 <li class="list-group-item">
-                        <strong>Población:</strong> {{pais.population | number}} 
+                    <strong>Capital:</strong> {{pais.capital}} 
                 </li>
                 <li class="list-group-item">
-                    <strong>Código numérico:</strong> {{pais.numericCode | number}} 
-            </li>
-            <li class="list-group-item">
-                <strong>Código alpha3:</strong> {{pais.alpha3Code}} 
-        </li>
-        <li class="list-group-item">
-            <strong>Paises vecinos:</strong> {{pais.borders}} 
-    </li>
+                    <strong>Población:</strong> {{pais.population | number}}
+                </li>
+                <li class="list-group-item">
+                    <strong>Código numérico:</strong> {{pais.numericCode | number}}
+                </li>
+                <li class="list-group-item">
+                    <strong>Código alpha3:</strong> {{pais.alpha3Code}}
+                </li>
+                <li class="list-group-item">
+                    <strong>Paises vecinos:</strong> {{pais.borders}}
+                </li>
 
-        <li class="list-group-item">
-            <strong>Zona horaria:</strong> {{pais.timezones}} 
-    </li>
+                <li class="list-group-item">
+                    <strong>Zona horaria:</strong> {{pais.timezones}}
+                </li>
 
             </ul>
         </div>
@@ -60,5 +63,9 @@
     </div>
 
 
+    <!-- <pre class="mt-5">
+
+        {{pais | json}}
+    </pre> -->
 
 </ng-template>

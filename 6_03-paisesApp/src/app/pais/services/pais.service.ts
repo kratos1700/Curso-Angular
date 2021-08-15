@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { Country } from '../interfaces/pais.interfaces';
 
@@ -10,6 +10,14 @@ export class PaisService {
 
   private apiUrl: string='https://restcountries.eu/rest/v2'
 
+  // get para establecer los parametro de la peticion para obtimizar la recuperacion de datos con solo lo que nos interesa
+  get httpParams(){
+
+    return  new HttpParams()
+    .set('fields','name;capital;alpha2Code;flag;population')
+
+  }
+
   constructor(private http: HttpClient) { }
 
 // funcion para retornar el arreglo de paises a buscar.
@@ -18,7 +26,7 @@ buscarPais(termino:string): Observable<Country[]> {
   const url=`${this.apiUrl}/name/${termino}`;
 
   //realizamos la peticion, no nos suscribimos, lo retornamos
-  return  this.http.get<Country[]>(url);
+  return  this.http.get<Country[]>(url, {params:this.httpParams});
 }
 
 
@@ -28,7 +36,7 @@ buscarCapital(termino:string): Observable<Country[]> {
   const url=`${this.apiUrl}/capital/${termino}`;
 
   //realizamos la peticion, no nos suscribimos, lo retornamos
-  return  this.http.get<Country[]>(url);
+  return  this.http.get<Country[]>(url, {params:this.httpParams});
 }
 
 
@@ -40,6 +48,14 @@ getPaisPorCodigo(codigoPais:string): Observable<Country> {
 
   //realizamos la peticion, no nos suscribimos, lo retornamos
   return  this.http.get<Country>(url);
+}
+
+buscarRegion(region:string): Observable<Country[]> {
+
+  
+
+  const url=`${this.apiUrl}/region/${region}`;
+  return  this.http.get<Country[]>(url, {params:this.httpParams});
 }
 
 

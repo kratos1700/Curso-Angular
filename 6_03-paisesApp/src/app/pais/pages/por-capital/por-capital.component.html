@@ -1,19 +1,26 @@
 
-<h2>Por Capital</h2>
-<hr>
 
-
-<div class="row">
-    <div class="col">
-
-        <app-pais-input 
-        (onEnter)="buscar($event)" 
-        placeholder="Buscar capitales..."></app-pais-input> <!--ENVIAMOS LA PALABRA QUE QUEREMOS BUSCAR QUE EMOS ENVIADO DESDE PAIS-INPUT  CON EL OUTPUT-->
-       
+<div class="animate__animated  animate__fadeIn animate__faster">
+    <h2>Por Capital</h2>
+    <hr>
+    
+    
+    <div class="row">
+        <div class="col">
+    
+            <app-pais-input 
+            (onEnter)="buscar($event)" 
+            placeholder="Buscar capitales..."></app-pais-input> <!--ENVIAMOS LA PALABRA QUE QUEREMOS BUSCAR QUE EMOS ENVIADO DESDE PAIS-INPUT  CON EL OUTPUT-->
+           
+        </div>
     </div>
+    
+    <hr>
+
+
 </div>
 
-<hr>
+
 
 
 <!--MENSAJE DE ERROR-->
@@ -22,7 +29,7 @@
 
 </div>
 <!--SI HAY MAS DE 0 PAISES MOSTRAMOS LA TABLA-->
-<div *ngIf="paises.length > 0"class="row">
+<div *ngIf="paises.length > 0">
     <div class="col">
 
         <app-pais-tabla [paises]="paises"></app-pais-tabla>
