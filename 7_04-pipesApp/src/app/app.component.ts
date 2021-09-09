@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PrimeNGConfig } from "primeng/api";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'pipesApp';
+
+  constructor ( private primeNGConfig: PrimeNGConfig) {}  
+  
+
+  ngOnInit(): void{
+
+    this.primeNGConfig.ripple= true; // activa la animacion de pulsar algun boton
+  }
 }

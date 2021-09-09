@@ -1,6 +1,6 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppComponent } from './app.component';
 
 //modulo personalizat
@@ -12,9 +12,11 @@ import { VentasModule } from './ventas/ventas.module';
 
 // cambiar el idioma en localStorage
 import localeEs from '@angular/common/locales/es';
+import localeFr from '@angular/common/locales/fr';
 import {registerLocaleData} from'@angular/common';
 
 registerLocaleData(localeEs);
+registerLocaleData(localeFr);
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ registerLocaleData(localeEs);
     BrowserModule,
     VentasModule,
     SharedModule,
-    AppRouterModule
+    AppRouterModule,
+    BrowserAnimationsModule,
 
     
   ],

@@ -1,1 +1,37 @@
-<p>numeros works!</p>
+
+<div class="text-layout">
+    <h1>DecimalPipe y Porcentaje</h1>
+    <p>
+        Pipes incluidos en Angular - Usualmente en el Common Module.
+    </p>
+</div>
+
+
+<div class="grid">
+    <div class="col-4"><!-- primero se suma el millon a ventas, el pipe number pone los puntos y comas, 1.2-2 es 1 unidad con 2 decimales  a 2 decimales-->
+      
+       <p-card header="Ventas Netas"
+                subheader="del presente año">
+                <i class="pi pi-euro"> </i>
+                {{ ventasNetas + 1000000 | number : '1.2-2'}}  </p-card>
+    </div>
+
+
+    <div class="col-4">
+        <p-card header="Ventas Brutas"
+                 subheader="del presente año">
+                
+                 {{ ventasNetas + 3000000 | currency :'EUR':'symbol-narrow':'1.0-4'}} 
+        </p-card>
+     </div>
+
+     <div class="col-4">
+        <p-card header="Ganancias %"
+                 subheader="del presente año">
+                
+                 {{porcentaje | percent: '0.2-2' }}
+             </p-card>
+     </div>
+
+
+</div>
