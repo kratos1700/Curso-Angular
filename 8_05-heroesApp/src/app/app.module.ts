@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
   declarations: [
     AppComponent,
     ErrorPageComponent
+    
   ],
   imports: [
     BrowserModule,
