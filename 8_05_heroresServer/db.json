@@ -166,6 +166,42 @@
       "alter_ego": "Norrin Radd",
       "first_appearance": "The Fantastic Four #48",
       "characters": "Norrin Radd"
+    },
+    {
+      "superhero": "robin",
+      "publisher": "DC Comics",
+      "alter_ego": "pepet",
+      "first_appearance": "slgun dia",
+      "characters": "juanitet",
+      "alt_img": "https://i.pinimg.com/236x/21/5d/66/215d661974c79c84ed1437c02e7af2ab--robin-cosplay-robin-comics.jpg",
+      "id": "J_07ncq"
+    },
+    {
+      "superhero": "maxakito",
+      "publisher": "Marvel Comics",
+      "alter_ego": "ricardo boquerone",
+      "first_appearance": "2021",
+      "characters": "pepepepeep",
+      "alt_img": "",
+      "id": "792dI72"
+    },
+    {
+      "superhero": "maxakito 2",
+      "publisher": "DC Comics",
+      "alter_ego": "",
+      "first_appearance": "",
+      "characters": "",
+      "alt_img": "",
+      "id": "YScNa0n"
+    },
+    {
+      "superhero": "maxakito 3",
+      "publisher": "DC Comics",
+      "alter_ego": "",
+      "first_appearance": "",
+      "characters": "",
+      "alt_img": "",
+      "id": "yJ2HNv6"
     }
   ]
 }
