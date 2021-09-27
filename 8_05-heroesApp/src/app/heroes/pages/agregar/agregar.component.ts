@@ -4,6 +4,7 @@ import { Heroe, Publisher } from '../../interfaces/heroes.interface';
 import { HeroesService } from '../../services/heroes.service';
 
 import { switchMap } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-agregar',
@@ -40,7 +41,8 @@ export class AgregarComponent implements OnInit {
   constructor(
     private heroesService: HeroesService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -66,12 +68,14 @@ export class AgregarComponent implements OnInit {
     // controlamos si tenemos un id o no para poder crear o actualizar
 
     if (this.heroe.id) {
-      this.heroesService.actualizarHeroe(this.heroe).subscribe((resp) => {
-        console.log('Heroe Actualizado');
-      });
+      this.heroesService.actualizarHeroe(this.heroe).subscribe(heroe => 
+        //mostramos snackbar
+        this.mostrarSnackbar('Registro actualizado'));
     } else {
-      this.heroesService.agregarHeroe(this.heroe).subscribe((heroe) => {
+      this.heroesService.agregarHeroe(this.heroe).subscribe(heroe=> {
         this.router.navigate(['/heroes/editar', heroe.id]);
+         //mostramos snackbar
+        this.mostrarSnackbar('Registro creado');
       });
     }
   }
@@ -82,5 +86,14 @@ export class AgregarComponent implements OnInit {
 
       this.router.navigate(['/heroes']);
     })
+  }
+
+
+  mostrarSnackbar(mensaje: string) {
+// mensaje , accion(es el boton), opciones
+    this.snackBar.open(mensaje, 'ok!', {
+      duration: 3000,
+    })
+
   }
 }

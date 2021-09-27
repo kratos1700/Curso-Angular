@@ -177,7 +177,7 @@
       "id": "J_07ncq"
     },
     {
-      "superhero": "maxakito",
+      "superhero": "maxakito 1",
       "publisher": "Marvel Comics",
       "alter_ego": "ricardo boquerone",
       "first_appearance": "2021",
@@ -202,6 +202,15 @@
       "characters": "",
       "alt_img": "",
       "id": "yJ2HNv6"
+    },
+    {
+      "superhero": "sdfsdf",
+      "publisher": "DC Comics",
+      "alter_ego": "sdfsd",
+      "first_appearance": "sdsfsd",
+      "characters": "sdfsdf",
+      "alt_img": "",
+      "id": "qYcNXtr"
     }
   ]
 }

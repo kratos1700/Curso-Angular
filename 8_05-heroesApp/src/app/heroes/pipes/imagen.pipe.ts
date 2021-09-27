@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Heroe } from '../interfaces/heroes.interface';
 
 @Pipe({
-  name: 'imagen'
+  name: 'imagen',
+ // pure: false   // hace k cada vez k se canvie el atributo se dispare
 })
 export class ImagenPipe implements PipeTransform {
 
