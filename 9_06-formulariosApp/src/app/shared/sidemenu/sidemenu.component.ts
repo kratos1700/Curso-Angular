@@ -1,4 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
+/**
+ * interface para el menu
+ */
+interface MenuItem{
+  texto:String;
+  ruta:String;
+}
+
 
 @Component({
   selector: 'app-sidemenu',
@@ -6,11 +15,36 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class SidemenuComponent implements OnInit {
+export class SidemenuComponent  {
 
-  constructor() { }
+ templateMenu:MenuItem[]=[
+   {
+     texto:'Basicos',
+     ruta: './template/basicos'
+   },
+   {
+     texto:'dinamicos',
+     ruta: './template/dinamicos'
+   },
+   {
+     texto:'switches',
+     ruta: './template/switches'
+   }
+ ];
 
-  ngOnInit(): void {
+ reactiveMenu:MenuItem[]=[
+  {
+    texto:'Basicos',
+    ruta: './reactive/basicos'
+  },
+  {
+    texto:'dinamicos',
+    ruta: './reactive/dinamicos'
+  },
+  {
+    texto:'switches',
+    ruta: './reactive/switches'
   }
+];
 
 }
