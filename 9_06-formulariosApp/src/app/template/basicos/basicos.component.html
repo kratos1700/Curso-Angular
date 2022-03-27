@@ -3,7 +3,7 @@
 
 <div class="row">
     <div class="col">
-        <form (ngSubmit)="guardar(miFormulario)" #miFormulario="ngForm">
+        <form (ngSubmit)="guardar()" #miFormulario="ngForm">
             <!--Campo de producto-->
             <div class="mb-3 row">
                 <div class="col-sm-3 col-form-label">Producto</div>
@@ -14,9 +14,17 @@
                     placeholder="Nombre del producto"
                     required 
                     minlength="3">
-                    <span class="form-text text-danger" 
+
+                    <!--
+                        <span class="form-text text-danger" 
                     *ngIf="miFormulario.controls.producto?.invalid &&
                     miFormulario.controls.producto?.touched"
+                    >Debe ser de 3 letras</span>
+
+                    -->
+
+                    <span class="form-text text-danger" 
+                    *ngIf="nombreValido()"
                     >Debe ser de 3 letras</span>
                 </div>
             </div>
@@ -31,6 +39,9 @@
                     placeholder="Precio del producto" 
                     required
                     min="0">
+                    <span class="form-text text-danger" 
+                    *ngIf="precioValido()"
+                    >El precio tiene que ser 0 o mayor</span>
               </div>
             </div>
 
@@ -45,9 +56,12 @@
               </div>
             </div>
 
+            <!-- Si es formulario es invalido se desactiva el boton linia 63-->
             <div class="row">
                 <div class="col">
-                    <button type="submit" class="btn btn-primary float-end">
+                    <button type="submit"
+                    [disabled]="miFormulario.invalid"
+                    class="btn btn-primary float-end">
                         Guardar
                     </button>
                 </div>
