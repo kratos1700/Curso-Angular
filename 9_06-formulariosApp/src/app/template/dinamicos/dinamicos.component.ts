@@ -1,4 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+/*
+interfaces 
+*/
+interface Persona{
+  nombre:string,
+  favoritos:Favorito []
+}
+
+interface Favorito{
+  id:number,
+  nombre:string
+}
 
 @Component({
   selector: 'app-dinamicos',
@@ -6,11 +19,29 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class DinamicosComponent implements OnInit {
+export class DinamicosComponent {
 
-  constructor() { }
+   // recuperamos el formulario de la referencia local con el ViewChild
+   @ViewChild('miFormulario') miFormulario!:NgForm
+  
+   persona:Persona={
+     nombre:'Pepitp',
+     favoritos:[
+       {id:1,nombre:'basquet'},
+       {id:2,nombre:'ciclismo'}
+     ]
 
-  ngOnInit(): void {
+   }
+
+
+  nombreValido():boolean{
+    return this.miFormulario?.controls.nombre?.invalid &&
+   this. miFormulario?.controls.nombre?.touched
+  }
+
+  guardar(){
+    console.log("Formulario posteado");
+    
   }
 
 }
