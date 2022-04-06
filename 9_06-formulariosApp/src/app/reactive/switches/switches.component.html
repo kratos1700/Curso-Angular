@@ -1,7 +1,7 @@
 <h2>Reactivos: <small>Switches</small></h2>
 <hr>
 
-<form>
+<form [formGroup]="miFormulario" (ngSubmit)="guardar()">
 
     <!--radios-->
     <div class="row mb-3">
@@ -12,8 +12,7 @@
             <input class="form-check-input" 
             type="radio"
             value="M"
-            
-            name="radioGenero" 
+            formControlName="genero"
             id="radioMasculino"
             >
             <label class="form-check-label" for="flexRadioDefault1">
@@ -24,8 +23,8 @@
         <input class="form-check-input"
          type="radio"
          value="F"
-        
-         name="radioGenero" 
+         
+         formControlName="genero"
          id="radioFemenino"
          >
         <label class="form-check-label" for="flexRadioDefault2">
@@ -46,7 +45,7 @@
             <div class="form-check form-switch mt-2">
                 <input class="form-check-input" 
                 type="checkbox" 
-              
+                formControlName="notificaciones"
                 role="switch" 
                 id="flexSwitchCheckChecked">
                 <label class="form-check-label" for="flexSwitchCheckChecked">Quiero recibir Notificaciones</label>
@@ -65,7 +64,7 @@
         <input class="form-check-input" 
         type="checkbox" 
         value=""
-       
+       formControlName="condiciones"
          id="flexCheckDefault">
         <label class="form-check-label" for="flexCheckDefault">
             Terminos y condiciones
@@ -78,14 +77,15 @@
 
     <div class="row">
         <div class="col">
-            <button class="btn btn-primary float-end">
+            <button class="btn btn-primary float-end"
+            type="submit">
                 Guardar</button>
         </div>
     </div>
 
 </form>
 
-<!--
+
 <h5>Valor del formulario</h5>
 <pre>{{miFormulario.value| json}}</pre>
 <br>
@@ -93,10 +93,10 @@
 <pre>{{persona| json}}</pre>
 <br>
 
-<h5>Valid</h5>
+ <h5>Valid</h5>
 <pre>{{miFormulario.valid| json}}</pre>
 <br>
+<!--
 <h5>Terminos</h5>
 <pre>{{miFormulario.controls?.terminos?.errors| json}}</pre>
-<pre>Condiciones: </pre>
--->
+<pre>Condiciones: </pre> -->
