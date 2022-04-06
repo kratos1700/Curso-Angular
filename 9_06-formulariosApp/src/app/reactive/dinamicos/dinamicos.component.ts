@@ -69,5 +69,10 @@ export class DinamicosComponent implements OnInit {
     this.miFormulario.reset();
 
   }
+  // funcion para eliminar un elemento del arrar, le pasamos el indice k se recorre en el html
+  borrar(i:number){
+    this.favoritosArr.removeAt(i);
+
+  }
 
 }

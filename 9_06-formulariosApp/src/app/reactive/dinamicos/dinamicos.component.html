@@ -45,7 +45,7 @@
         <label class="col-sm-3 col-form-label">Favoritos</label>
         <div class="col-sm-9" formArrayName="favoritos">
 
-            <!--sirve para crear el input con un boton-->
+            <!--sirve para crear el input con un boton, el i sirve para saber que posicion elemento ocupa en el array-->
             <div class="input-group  mb-1"
              *ngFor="let favorito of favoritosArr.controls; let i = index"
             >
@@ -53,6 +53,7 @@
             [formControlName]="i"
                 >
                 <button class="btn btn-outline-danger" type="button"
+                (click)="borrar(i)"
                >
                     Eliminar
                 </button>
