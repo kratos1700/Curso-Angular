@@ -3,7 +3,7 @@
 
 <div class="row">
   <div class="col">
-    <form autocomplete="off">
+    <form autocomplete="off" [formGroup]="miFormulario" (ngSubmit)="submitFormulario()">
       <!--Nombre-->
       <div class="row mb-3">
         <label class="col-sm-3 col-form-label">Nombre </label>
@@ -11,9 +11,11 @@
           <input
             type="text"
             class="form-control"
+            formControlName="nombre"
             placeholder="Nombre de usuario">
 
-           <span class="form-text text-danger">
+           <span class="form-text text-danger"
+           *ngIf="campoNoValido('nombre')">
                Debe ser formato de Nombre y Apellido
            </span>
         </div>
@@ -26,7 +28,13 @@
           <input
             type="email"
             class="form-control"
+            formControlName="email"
             placeholder="Correo electronico">
+
+            <span class="form-text text-danger"
+            *ngIf="campoNoValido('email')">
+                Debe ser un correo valido
+            </span>
         </div>
       </div>
 
@@ -69,7 +77,8 @@
       <div class="row">
           <div class="col">
               <button
-              class="btn btn-primary float-end">
+              class="btn btn-primary float-end"
+              type="submit">
               Crear
               </button>
           </div>
@@ -77,3 +86,10 @@
     </form>
   </div>
 </div>
+
+
+<h2>Form Valid: {{miFormulario.valid}}</h2>
+<h5>Nombre</h5>
+<pre>{{miFormulario.controls.nombre.errors | json}}</pre>
+<h5>Email</h5>
+<pre>{{miFormulario.controls.email.errors | json}}</pre>
