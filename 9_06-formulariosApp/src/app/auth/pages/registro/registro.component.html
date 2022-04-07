@@ -45,7 +45,13 @@
           <input
             type="text"
             class="form-control"
+            formControlName="username"
             placeholder="Username / nick">
+
+            <span class="form-text text-danger"
+            *ngIf="campoNoValido('username')">
+                El username no puede ser strider
+            </span>
         </div>
       </div>
 
@@ -57,7 +63,13 @@
           
             type="password"
             class="form-control"
+            formControlName="password"
             placeholder="Contraseña">
+
+            <span class="form-text text-danger"
+            *ngIf="campoNoValido('password')">
+               La contraseña tiene que ser mayor a 6 caracteres
+            </span>
         </div>
       </div>
 
@@ -69,7 +81,13 @@
           
             type="password"
             class="form-control"
+            formControlName="password2"
             placeholder="Confirmar Contraseña">
+
+            <span class="form-text text-danger"
+            *ngIf="campoNoValido('password2')">
+               Las contraseñas tienen que ser iguales
+            </span>
         </div>
       </div>
 
@@ -89,7 +107,16 @@
 
 
 <h2>Form Valid: {{miFormulario.valid}}</h2>
+<h2>Form Errors</h2>
+<pre> {{miFormulario.errors | json}}</pre>
+
 <h5>Nombre</h5>
 <pre>{{miFormulario.controls.nombre.errors | json}}</pre>
 <h5>Email</h5>
 <pre>{{miFormulario.controls.email.errors | json}}</pre>
+<h5>Username</h5>
+<pre>{{miFormulario.controls.username.errors | json}}</pre>
+<h5>Password</h5>
+<pre>{{miFormulario.controls.password.errors | json}}</pre>
+<h5>Password2</h5>
+<pre>{{miFormulario.controls.password2.errors | json}}</pre>

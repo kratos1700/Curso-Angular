@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { emailRegex, nombreApellidoRegex, noPuedeSerStrider } from 'src/app/shared/validators/validaciones';
+import { ValidatorsService } from 'src/app/shared/validators/validators.service';
 
 @Component({
   selector: 'app-registro',
@@ -9,18 +11,22 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RegistroComponent implements OnInit {
 
-  nombreApellidoRegex:string="([a-zA-Z]+) ([a-zA-Z]+)";
-  emailRegex:string="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"
-
   //creamos el formulario
   miFormulario:FormGroup=this.fb.group({
-    nombre:['',[Validators.required, Validators.pattern(this.nombreApellidoRegex)]],
-    email:['',[Validators.required, Validators.pattern(this.emailRegex)]],
+    nombre:['',[Validators.required, Validators.pattern(this.validatorService.nombreApellidoRegex)]],
+    email:['',[Validators.required, Validators.pattern(this.validatorService.emailRegex)]],
+    username:['',[Validators.required,this.validatorService.noPuedeSerStrider]],
+    password:['',[Validators.required,Validators.minLength(6)]],
+    password2:['',[Validators.required] ],
+
+    // ponemos , y abrimos llaves para mandor opciones al form group
+  }, {
+    validators:[this.validatorService.camposIguales('password','password2')]
 
   })
 
-  // creamos el FormBuilder
-  constructor(private fb:FormBuilder) { }
+  // creamos el FormBuilder, creamos el servicio de validaciones personalizadas
+  constructor(private fb:FormBuilder, private validatorService:ValidatorsService) { }
 
   ngOnInit(): void {
   }
