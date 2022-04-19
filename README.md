@@ -4,3 +4,4 @@
 - https://gifs-app-test.netlify.app
 - https://app-buscar-paises.netlify.app
 - https://pipes-test.netlify.app
+- https://app-formulariostr.netlify.app
