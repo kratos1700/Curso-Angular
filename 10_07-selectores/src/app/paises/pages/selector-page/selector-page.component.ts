@@ -23,7 +23,12 @@ export class SelectorPageComponent implements OnInit {
   //llenar selector
   regiones:string[]=[];
   paises:PaisSmall[]=[];
-  fronteras:string[]=[];
+  //fronteras:string[]=[];
+  fronteras:PaisSmall[]=[];
+
+  //UI
+  cargando:boolean=false;
+
 
   constructor(private fb:FormBuilder,private paisesService:PaisesService) { }
 
@@ -38,13 +43,18 @@ export class SelectorPageComponent implements OnInit {
       //una vez cambiada la region. (_) es para decir k no importa el valor que tenemos
       tap( (_) =>{
         this.miFormulario.get('pais')?.reset('');
+        //mostramos el mensaje de cargando
+        this.cargando=true;
+
       }),
        //usamos el pipe para modificar el valor 
       // una vez que obtenemos el valor, lo cambiamos por la siguiente peticion
       switchMap(region => this.paisesService.getPaisesPorRegion(region)) 
     )
     .subscribe(paises =>{
-      this.paises=paises    
+      this.paises=paises   
+      //quitamos el mensaje de cargando
+      this.cargando=false; 
     })
 
 
@@ -53,12 +63,21 @@ export class SelectorPageComponent implements OnInit {
     .pipe(
       // limpiamos las fornteras
       tap( (_)=> { this.fronteras=[];
-      this.miFormulario.get('frontera')?.reset('')}),
-      switchMap(codigo => this.paisesService.getPaisesPorCodigo(codigo))
+        //limpiamos el formulario
+      this.miFormulario.get('frontera')?.reset('')
+      //mostramos cargando
+      this.cargando=true;
+    }),
+
+      switchMap(codigo => this.paisesService.getPaisesPorCodigo(codigo)),
+      switchMap(pais => this.paisesService.getPaisesPorCodigos(pais?.borders!))
     )
-    .subscribe( pais => {
+    .subscribe( paises => {
       // rellenamos las fronteras pero si el pais no tiene lo rellenamos con un arreglo vacio
-      this.fronteras= pais?.borders || [];
+     // this.fronteras= pais?.borders || [];
+     this.fronteras=paises;
+      //eliminamos cargando
+      this.cargando=false;
       
     })
 
@@ -66,7 +85,7 @@ export class SelectorPageComponent implements OnInit {
 
 
   guardar(){
-    console.log("guardando");
+    console.log(this.miFormulario.value);
     
   }
 }
