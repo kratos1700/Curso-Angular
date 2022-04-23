@@ -11,3 +11,11 @@
 - https://app-formulariostr.netlify.app
 ### 07_selectoresApp
 - https://app-selectoresmultiple.netlify.app
+
+
+
+
+APIs: 
+
+- https://developers.giphy.com/
+- https://restcountries.com/
