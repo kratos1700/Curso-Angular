@@ -1,1 +1,30 @@
-<p>zoom-range works!</p>
+<!--#mapa es una referencia local para poder usar 
+    mas de un mapa en caso de ser necesario de forma dinamica -->
+<div #mapa class="mapa-container">
+
+</div>
+
+
+<div class="row">
+    <div class="col-12">
+        <label class="form-label" >
+            Zoom : 14
+            - Lng,Lat: [123,123]
+
+        </label>
+        <input type="range" class="form-range">
+    </div>
+
+
+    <div class="col-12">
+        <button class="btn btn-primary" (click)="zoomOut()">
+            -
+        </button>
+
+        <button class="btn btn-primary float-end" (click)="zoomIn()">
+            +
+        </button>
+    </div>
+
+</div>
+
