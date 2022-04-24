@@ -19,3 +19,4 @@ APIs:
 
 - https://developers.giphy.com/
 - https://restcountries.com/
+- https://www.mapbox.com/
