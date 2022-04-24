@@ -1,1 +1,11 @@
-<p>menu works!</p>
+<ul class="list-group">
+    <!--recorremos el menuItem para mostrar las opciones
+     con sus rutas mediante el routerlink-->
+    <li *ngFor="let item of menuItems"
+    [routerLink]="[item.ruta]" 
+    routerLinkActive="active"
+    class="list-group-item">
+        {{item.nombre}}
+    </li>
+
+</ul>
