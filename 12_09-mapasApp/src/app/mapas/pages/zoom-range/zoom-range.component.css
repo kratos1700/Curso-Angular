@@ -9,6 +9,7 @@
     border-radius: 10px;
     left: 50px;
     padding: 8px;
+    width: 300px;
 
     position: fixed;
     z-index: 999;
