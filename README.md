@@ -11,13 +11,12 @@
 - https://app-formulariostr.netlify.app
 ### 07_selectoresApp
 - https://app-selectoresmultiple.netlify.app
-### 09_selectoresApp
+### 09_MapasApp
 - https://mapas-appp.netlify.app
-
 
 
 APIs: 
 
-- https://developers.giphy.com/
+- https://developers.giphy.com
 - https://restcountries.com/
 - https://www.mapbox.com/
