@@ -13,6 +13,7 @@
 - https://app-selectoresmultiple.netlify.app
 ### 09_MapasApp
 - https://mapas-appp.netlify.app
+### 10_graficasApp
 
 
 APIs: 
@@ -20,3 +21,4 @@ APIs:
 - https://developers.giphy.com
 - https://restcountries.com/
 - https://www.mapbox.com/
+- https://valor-software.com/ng2-charts
