@@ -22,3 +22,8 @@ APIs:
 - https://restcountries.com/
 - https://www.mapbox.com/
 - https://valor-software.com/ng2-charts
+
+### Actualizar npm:
+```
+npm i -g npm
+```
