@@ -15,7 +15,9 @@ import { PaisService } from '../../services/pais.service';
   ],
 })
 export class PorRegionComponent implements OnInit {
-  regiones: string[] = ['africa', 'americas', 'asia', 'europe', 'oceania'];
+ // regiones: string[] = ['africa', 'americas', 'asia', 'europe', 'oceania'];
+  regiones: string[] = ['EU', 'EFTA', 'CARICOM', 'PA', 'AU', 'USAN', 'EEU', 'AL', 'ASEAN', 'CAIS', 'CEFTA', 'NAFTA', 'SAARC',];
+ 
   regionActiva: string = '';
   paises: Country[] = [];
 
@@ -40,8 +42,10 @@ export class PorRegionComponent implements OnInit {
     this.paises=[];
 
     // TODO: aqui cargaremos el servivcio
+    this.paisService.buscarRegion( region )
+    .subscribe( paises => this.paises = paises );
 
-    this.paisService.buscarRegion(region).subscribe(
+   /*  this.paisService.buscarRegion(region).subscribe(
       (paises) => {
         console.log(paises);
         this.paises = paises;
@@ -52,6 +56,6 @@ export class PorRegionComponent implements OnInit {
         console.log('Error');
         console.info(err);
       }
-    );
+    ); */
   }
 }
