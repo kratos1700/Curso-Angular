@@ -23,7 +23,19 @@ APIs:
 - https://www.mapbox.com/
 - https://valor-software.com/ng2-charts
 
+
+
+### Instalar dependencias:
+```
+npm i 
+```
+
 ### Actualizar npm:
 ```
 npm i -g npm
+```
+
+### Ejecutar proyecto:
+```
+ng serve
 ```
