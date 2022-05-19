@@ -14,6 +14,11 @@
 ### 09_MapasApp
 - https://mapas-appp.netlify.app
 ### 10_graficasApp
+- https://graficaapp.netlify.app 
+<br>
+ <small> (Se tiene que levantar la graficaServer para la peticion get)</small>
+
+### 11_DirectivasApp
 
 
 APIs: 
