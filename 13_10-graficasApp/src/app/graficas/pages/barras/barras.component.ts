@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 
 import { BaseChartDirective } from 'ng2-charts';
@@ -10,13 +10,19 @@ import { BaseChartDirective } from 'ng2-charts';
   styleUrls: ['./barras.component.css']
 })
 export class BarrasComponent implements OnInit {
-
+  // para pasar parametros en barras dobles
+// @Input() line:boolean=false;
 
   @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
 
   constructor() { }
 
   ngOnInit(): void {
+
+    // cambiamos el tipo de grafica
+    // if(this.line){
+    //   this.barChartType = 'radar';
+    // }
   }
 
 
