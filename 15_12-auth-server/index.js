@@ -4,14 +4,8 @@ const express = require('express')
 const app= express();
 
 
-//get
-app.get('/',(req, res)=>{
-    console.log('Peticion en el /');
-    res.status(200).json({
-        ok:true,
-        msg:"Peticion correcta"
-    })
-})
+//rutas
+app.use('/api/auth', require('./routes/auth.routes'));
 
 
 
