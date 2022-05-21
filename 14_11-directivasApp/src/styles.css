@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+
+/*
+esta clase la creamos en la directiva para ocultar el mensaje del span
+*/
+.hidden{
+    display: none;
+}
