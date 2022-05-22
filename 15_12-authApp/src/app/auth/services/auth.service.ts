@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from "rxjs/operators";
 import { environment } from 'src/environments/environment';
-import { AuthResponse, Usuario } from '../interfaces/interfaces';
+import { AuthResponse, RegistroResponse, Usuario } from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +34,9 @@ export class AuthService {
             localStorage.setItem('token', resp.token!)
             this._usuario = {
               nombre: resp.nombre!,
+              email:resp.email!,
               uid: resp.uid!
+              
             }
           }
         }),
@@ -63,7 +65,8 @@ export class AuthService {
           localStorage.setItem('token', resp.token!)
           this._usuario = {
             nombre: resp.nombre!,
-            uid: resp.uid!
+            uid: resp.uid!,
+            email:resp.email!
           }
 
           return resp.ok
@@ -74,6 +77,39 @@ export class AuthService {
 
   logout(){
     localStorage.clear();
+  }
+
+
+
+  registro( nombre:string, email:string, password:string){
+
+
+    const url = `${this.baseUrl}/auth/new`;
+    const body = { nombre,email, password }
+    // retornamos el observable para suscribirnos
+    return this.http.post<RegistroResponse>(url, body)
+      .pipe(
+        tap(resp => {
+          // al recibir la respuesta si es ok, guardamos los datos del usuario
+          if (resp.ok) {
+            // guardamos el token al localstorage
+            localStorage.setItem('token', resp.token!)
+            this._usuario = {
+              nombre: resp.nombre!,
+              uid: resp.uid!,
+              email:resp.email!
+             
+            }
+          }
+        }),
+        // modificamos las respuesta
+        map(resp => resp.ok),
+        // catchError(err=> of(false))// transformamos el false valor booleano a un observable con of()
+        catchError(err => of(err.error.msg))// transformamos el false valor booleano a un observable con of()
+      )
+
+
+
   }
 
 

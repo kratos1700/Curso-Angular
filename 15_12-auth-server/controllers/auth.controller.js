@@ -39,6 +39,7 @@ const crearUsuario = async (req, res = response) => {
       msg: "Usuario creado",
       uid: dbUser.id,
       nombre,
+      email,
       token,
     });
   } catch (error) {
@@ -84,6 +85,7 @@ const login = async (req, res = response) => {
       ok: true,
       uid: dbUser.id,
       nombre: dbUser.nombre,
+      email,
       token,
     });
   } catch (error) {
