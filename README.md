@@ -18,7 +18,9 @@
 <br>
  <small> (Se tiene que levantar la graficaServer para la peticion get)</small>
 
-### 11_DirectivasApp
+### 12_authAPP: 
+ Se tiene que poner online el backend que esta en 15_12-auth-server, configurar el .env con el puerto, una cadena de conexion a MongoDB y la clave para generar el hash del password.
+ Abrir 15_12-authApp para el frondend.
 
 
 APIs: 

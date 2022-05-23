@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors');
 const { dbConnection } = require('./db/config');
+const  path  = require('path');
 require('dotenv').config();
 
 // crear el server de express
@@ -20,6 +21,11 @@ app.use(express.json());
 
 //rutas
 app.use('/api/auth', require('./routes/auth.routes'));
+
+//opcion para las rutas a manejar
+app.get('*', (req, res)=>{
+    res.sendFile(path.resolve(__dirname,'public/index.html'))
+})
 
 
 
