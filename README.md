@@ -22,6 +22,13 @@
  Se tiene que poner online el backend que esta en 15_12-auth-server, configurar el .env con el puerto, una cadena de conexion a MongoDB y la clave para generar el hash del password.
  Abrir 15_12-authApp para el frondend.
 
+### Final MapsApp:
+<small>
+Version 2 de mapas con rutas.
+</small>
+<br>
+https://maps-appp.netlify.app/
+
 
 APIs: 
 
