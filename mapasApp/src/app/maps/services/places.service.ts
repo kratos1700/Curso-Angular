@@ -73,9 +73,13 @@ export class PlacesService {
        this.isLoadingPlaces=false;
        this.places= resp.features;
 
-       this.mapService.createMarkersFromPlaces(this.places)
+       this.mapService.createMarkersFromPlaces(this.places, this.useLocation!)
      })
      
+   }
+
+   deletePlaces(){
+     this.places=[];
    }
 
 

@@ -21,6 +21,7 @@ class="alert alert-primary mt-2 text-center">
         </p>
 
         <button class="btn btn-sm"
+        (click)="getDireccions(place)"
         [ngClass]="(place.id===selectedId) ? 'btn-outline-light':'btn-outline-primary'"
         
         >

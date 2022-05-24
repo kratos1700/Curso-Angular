@@ -33,6 +33,18 @@ export class SearchResultComponent implements OnInit {
 
   }
 
+
+  getDireccions(place:Feature){
+    if(!this.placesService.useLocation)throw Error('No hay userLocation')
+   
+    this.placesService.deletePlaces();
+   
+    const start=this.placesService.useLocation!;
+    const end= place.center as [number, number];
+    this.mapService.getRouteBetweenPoints(start, end)
+
+  }
+
   ngOnInit(): void {
   }
 
