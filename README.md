@@ -43,6 +43,10 @@ APIs:
 ```
 npm i 
 ```
+### Actualizar dependencias json:
+```
+ncu -u 
+```
 
 ### Actualizar npm:
 ```
