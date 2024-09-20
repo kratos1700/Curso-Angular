@@ -28,8 +28,7 @@ Version 2 de mapas con rutas.
 </small>
 <br>
 https://maps-appp.netlify.app/
-<br>
-<br>
+
 
 APIs: 
 
