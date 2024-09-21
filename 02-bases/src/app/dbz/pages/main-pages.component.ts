@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 import { Character } from "../interfaces/character.interface";
 
 @Component({
@@ -24,14 +24,21 @@ export class MainPageComponent  {
 
 ];
 
+
+
+
 onNewCharacter(character:Character):void{
 
   this.characters.push(character);
 
 }
 
+/* The `onDeleteCharacter` method in the `MainPageComponent` class is responsible for deleting a
+character from the `characters` array based on the provided `id`. It uses the `splice` method to
+remove the character at the specified index in the array. */
 onDeleteCharacter(id:number):void{
-  this.characters.splice(id);
+  this.characters.splice(id,1);
+
 }
 
 }

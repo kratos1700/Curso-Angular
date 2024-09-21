@@ -4,8 +4,10 @@
 
 <div class="row">
   <div class="col">
-    <app-dbz-list  [characterList]="characters"  (onDeleteCharacter)="onDeleteCharacter($event)"></app-dbz-list>
-
+ <!-- onDelete -->
+ <app-dbz-list [characterList]="characters"
+(onDelete)="onDeleteCharacter($event)"
+ ></app-dbz-list >
 
   </div>
   <div class="col">

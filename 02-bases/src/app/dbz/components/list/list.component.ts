@@ -18,14 +18,14 @@ export class ListComponent {
 
   ]
 
-  @Output()  // para emitir el caracter i recibirlo al main page
-  onDeleteId: EventEmitter<number> = new EventEmitter();
-
+  @Output()
+public onDelete :EventEmitter<number> = new EventEmitter()
 
 
   onDeleteCharacter(id: number): void {
     console.log(id);
-   // this.onDeleteId.emit(id)
+    //this.characterList.splice(id);
+   this.onDelete.emit(id);
 
   }
 
