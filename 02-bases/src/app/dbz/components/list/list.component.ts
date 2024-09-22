@@ -19,10 +19,10 @@ export class ListComponent {
   ]
 
   @Output()
-public onDelete :EventEmitter<number> = new EventEmitter()
+public onDelete :EventEmitter<string> = new EventEmitter()
 
 
-  onDeleteCharacter(id: number): void {
+  onDeleteCharacter(id: string): void {
     console.log(id);
     //this.characterList.splice(id);
    this.onDelete.emit(id);
