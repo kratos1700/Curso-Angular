@@ -1,5 +1,6 @@
 import { Component, input } from '@angular/core';
 import { GifListItemComponent } from "../gif-list-item/gif-list-item.component";
+import { Gifs } from '../../interfaces/gif.interface.resp';
 
 @Component({
   selector: 'gif-list',
@@ -16,7 +17,7 @@ export class GifListComponent {
   // y se mostrará un error en la consola
   // Esto es una buena práctica para asegurarnos de que el componente se use correctamente
   // y evitar errores en tiempo de ejecución
-  gifs = input.required<string[]>();
+  gifs = input.required<Gifs[]>();
 
 
  }

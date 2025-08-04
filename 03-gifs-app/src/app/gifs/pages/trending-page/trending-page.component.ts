@@ -1,5 +1,6 @@
-import {  Component } from '@angular/core';
+import {  Component, computed, inject } from '@angular/core';
 import { GifListComponent } from "../../components/gif-list/gif-list.component";
+import { GifsService } from '../../services/gifs.service';
 
 
 const imageURLs: string[] = [
@@ -23,8 +24,9 @@ const imageURLs: string[] = [
 })
 export default class TrendingPageComponent {
 
-gifs = imageURLs;
+//gifs = imageURLs;
 
+gifService = inject(GifsService)
 
 
 }
