@@ -33,7 +33,10 @@ export class GifsService {
   // que representan los GIFs de tendencia obtenidos de la API
   trendingGifs = signal<Gifs[]>([]);
   // Creamos una señal para indicar si los GIFs de tendencia están siendo cargados
-  trendingGifsLoading = signal<boolean>(true);
+  trendingGifsLoading = signal<boolean>(false);
+
+
+  private trendingPage = signal(0); // Creamos una señal para almacenar la página actual de los GIFs de tendencia
 
 
   trendingGifGroup = computed<Gifs[][]>(() => {
@@ -67,10 +70,19 @@ export class GifsService {
   }
 
   loadTrendingGifs() {
+if (this.trendingGifsLoading()) return; // Verificamos si los GIFs de tendencia ya están siendo cargados para evitar múltiples peticiones
+
+    this.trendingGifsLoading.set(true); // Establecemos el estado de carga a true para indicar que estamos cargando los GIFs de tendencia
+    // Realizamos una petición HTTP a la API de Giphy para obtener los GIFs de tendencia
+    // Utilizamos el servicio HttpClient para hacer la petición GET
+    // La URL de la API se construye utilizando la constante 'servicioURL' del entorno y el endpoint '/gifs/trending'
+    // Pasamos los parámetros necesarios, como la clave de API y el límite de resultados
+
     this.http.get<SearchGifsResponse>(`${environment.servicioURL}/gifs/trending`, {
       params: {
         api_key: environment.apiKey,
-        limit: 20
+        limit: 20,
+        offset: this.trendingPage() * 20, // Utilizamos la página actual para calcular el offset
       }
 
     }).subscribe((resp) => { //estamos suscribiéndonos a la respuesta de la petición HTTP
@@ -83,8 +95,16 @@ export class GifsService {
       // 'resp.data' contiene los datos de los GIFs obtenidos de la API
       // 'GifMapper.mapGiphyItemsToGifArray' transforma estos datos en un array de objetos Gifs
       const gifs = GifMapper.mapGiphyItemsToGifArray(resp.data);
-      this.trendingGifs.set(gifs);
-      this.trendingGifsLoading.set(false); // Actualizamos el estado de carga a false una vez que los GIFs se han cargado
+     // this.trendingGifs.set(gifs); // Actualizamos la señal 'trendingGifs' con los GIFs obtenidos de la API
+
+     this.trendingGifs.update(currentGifs => [
+        ...currentGifs, // Mantenemos los GIFs actuales y agregamos los nuevos GIFs obtenidos
+        ...gifs // Agregamos los nuevos GIFs a los GIFs actuales, manteniendo los anteriores
+     ]);
+
+this.trendingPage.update(page => page + 1); // Incrementamos la página actual para la próxima carga de GIFs
+
+this.trendingGifsLoading.set(false); // Actualizamos el estado de carga a false una vez que los GIFs se han cargado
       // Aquí podrías agregar más lógica para manejar errores o realizar acciones adicionales
       // con los GIFs obtenidos, como almacenarlos en un servicio o mostrarlos en la interfaz de usuario
       // Por ejemplo, podrías imprimir los GIFs en la consola para verificar que se han cargado correctamente
