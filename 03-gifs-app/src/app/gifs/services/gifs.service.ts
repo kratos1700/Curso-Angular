@@ -35,6 +35,29 @@ export class GifsService {
   // Creamos una señal para indicar si los GIFs de tendencia están siendo cargados
   trendingGifsLoading = signal<boolean>(true);
 
+
+  trendingGifGroup = computed<Gifs[][]>(() => {
+    const groups = [];
+
+    // Agrupamos los GIFs de tendencia en grupos de 3
+    // Esto es útil para mostrar los GIFs en una cuadrícula o galería
+    // Dividimos el array de GIFs en subarrays de 3 elementos cada uno
+    // Esto permite que los componentes que muestran los GIFs puedan iterar sobre estos grupos
+    // y renderizar los GIFs de manera más eficiente
+    // Utilizamos un bucle for para recorrer el array de GIFs de tendencia
+    // y crear subarrays de 3 elementos cada uno
+    // 'this.trendingGifs()' obtiene el array actual de GIFs de tendencia
+    // 'slice(i, i + 3)' crea un subarray que contiene 3 GIFs a partir del índice 'i'
+    // 'i += 3' incrementa el índice en 3 para pasar al siguiente grupo de GIFs
+    for (let i = 0; i < this.trendingGifs().length; i += 3) {
+      groups.push(this.trendingGifs().slice(i, i + 3));
+    }
+
+    return groups; // Creamos una señal computada para agrupar los GIFs de tendencia
+
+  }); // Creamos una señal computada para agrupar los GIFs de tendencia
+
+
   searchHistory = signal<Record<string, Gifs[]>>(loadFromLocalStorage()); // Creamos una señal para almacenar el historial de búsqueda
   searchHistoryKeys = computed(() => Object.keys(this.searchHistory())); // Creamos una señal computada para obtener las claves del historial de búsqueda
 
