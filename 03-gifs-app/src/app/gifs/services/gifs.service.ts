@@ -1,9 +1,19 @@
+import { Gifs } from './../interfaces/gif.interface.resp';
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import { environment } from '@environment/environment';
 import type { SearchGifsResponse } from '../interfaces/gifs.interface';
-import { Gifs } from '../interfaces/gif.interface.resp';
 import { GifMapper } from '../mapper/gifs.mapper';
+import { map, tap } from 'rxjs';
+
+
+
+const loadFromLocalStorage = () => {
+  const historyString = localStorage.getItem('gifs') ?? '{}'; // Obtenemos el historial de búsqueda de GIFs del almacenamiento local
+  const gifs = JSON.parse(historyString); // Convertimos la cadena JSON a un objeto JavaScript
+  return gifs; // Retornamos el objeto con el historial de búsqueda
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -22,18 +32,22 @@ export class GifsService {
   // En este caso, la señal 'trendingGifs' almacenará un array de objetos Gif
   // que representan los GIFs de tendencia obtenidos de la API
   trendingGifs = signal<Gifs[]>([]);
-// Creamos una señal para indicar si los GIFs de tendencia están siendo cargados
+  // Creamos una señal para indicar si los GIFs de tendencia están siendo cargados
   trendingGifsLoading = signal<boolean>(true);
+
+  searchHistory = signal<Record<string, Gifs[]>>(loadFromLocalStorage()); // Creamos una señal para almacenar el historial de búsqueda
+  searchHistoryKeys = computed(() => Object.keys(this.searchHistory())); // Creamos una señal computada para obtener las claves del historial de búsqueda
+
 
   constructor() {
     this.loadTrendingGifs();
   }
 
-  loadTrendingGifs(){
+  loadTrendingGifs() {
     this.http.get<SearchGifsResponse>(`${environment.servicioURL}/gifs/trending`, {
       params: {
         api_key: environment.apiKey,
-        limit:20
+        limit: 20
       }
 
     }).subscribe((resp) => { //estamos suscribiéndonos a la respuesta de la petición HTTP
@@ -57,6 +71,53 @@ export class GifsService {
     });
 
   }
+
+
+  searchGifs(query: string) {
+
+    return this.http.get<SearchGifsResponse>(`${environment.servicioURL}/gifs/search`, {
+      params: {
+        api_key: environment.apiKey,
+        limit: 50,
+        q: query
+      }
+    }
+
+    ).pipe( // Utilizamos el operador 'pipe' para encadenar operadores de transformación
+      // Mapeamos la respuesta de la API para obtener solo los datos de los GIFs
+      // 'resp.data' contiene los datos de los GIFs obtenidos de la API
+      // 'GifMapper.mapGiphyItemsToGifArray' transforma estos datos en un array de objetos Gifs
+      // Esto nos permite trabajar con los GIFs de una manera más sencilla en nuestra aplicación
+      map(({ data }) => data),
+      map((gifs) => GifMapper.mapGiphyItemsToGifArray(gifs)),
+      tap((gifs) => {
+        // Almacenamos los GIFs obtenidos de la búsqueda en el historial de búsqueda
+        // 'this.searchHistory()' obtiene el historial actual de búsqueda
+        this.searchHistory.update(history => (
+          {
+            ...history,
+            [query.toLocaleLowerCase()]: gifs // Almacenamos los GIFs bajo la clave de la consulta de búsqueda
+
+
+          }))
+
+      })
+
+    );
+  }
+
+
+  getGifsFromHistory(query: string) {
+
+    return this.searchHistory()[query] ?? [];
+
+  }
+
+  saveGifsToLocalStorage = effect(() => {
+
+    const historystring = JSON.stringify(this.searchHistory()); // Convertimos el historial de búsqueda a una cadena JSON
+    localStorage.setItem('gifs', historystring);
+  });
 
 
 }
