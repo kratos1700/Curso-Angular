@@ -1,4 +1,4 @@
-
+<!--
 
 <h1 class="text-3xl font-bold underline">
   Holasss</h1>
@@ -11,6 +11,11 @@
 <button class="btn btn-outline btn-info">Info</button>
 <button class="btn btn-outline btn-success">Success</button>
 <button class="btn btn-outline btn-warning">Warning</button>
-<button class="btn btn-outline btn-error">Error</button>
+<button class="btn btn-outline btn-error">Error</button> -->
+<main class="m-auto flex-grow flex flex-col min-h-screen">
+  <router-outlet />
 
-<router-outlet />
+  <!-- con esto se asegura que el footer siempre esté al final -->
+  <div class="flex-1 flex-grow"></div>
+  <app-footer />
+</main>
